@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style type="text/css">
+    body {padding-left: 50px;padding-right: 50px;padding-bottom: 100px;}
+    .container {border: 1px solid #e5e5e5;margin-bottom: 30px;width: 600px;}
+    .item {background: #f90;border: 1px solid #f4f4f4;color: #fff;text-align: center;}
+    .comment {padding: 20px 15px;border: 3px solid #e49b2d;margin-bottom: 10px;}
+    ul{margin: 0;line-height: 34px;}
+    .width_100{width: 100px;}
+    .width_200{width: 200px;}
+    .width_300{width: 300px;}
+    .container1{display: inline-flex;width:300px;}
+    .container2{display: flex;width:300px;}
+    .container1 .item, .container2 .item{flex:1;}
+    .container3 .item{flex: 1 1 auto;}
+    .container4 .item{flex: 1;}
+    .container5 {width: 1200px;}
+    .container5 .item {border-width: 10px;height:150px;}
+    .container5 .item1{flex: 1 1 50px;}
+    .container5 .item2{flex: 2 1 200px;}
+    .container5 .item3{flex: 3 1 50px;}
+    .container6 {width: 600px;height: 150px;}
+    .container6 .item{border-width:10px;min-width:0;}
+    .container6 .item1{flex:1 1 300px;}
+    .container6 .item2{flex:1 2 600px;}
+    .container6 .item3{flex:1 3 300px;}
+    .container7 .item{border-width:10px;}
+    .container7 .item1{flex:1 1 300px;}
+    .container7 .item2{flex:1 2 600px;}
+    .container7 .item3{flex:1 3 300px;}
+  </style>
+</head>
+<body>
+  <h3 id="1"># display: inline-flex vs display: flex</h3>
+  <div class="container1 container">
+    <div class="item">left side</div>
+    <div class="item">display: inline-flex</div>
+    <div class="item">right side</div>
+  </div>
+  <div class="container1 container">
+    <div class="item">left side</div>
+    <div class="item">display: inline-flex</div>
+    <div class="item">right side</div>
+  </div>
+  <div class="container2 container">
+    <div class="item">left side</div>
+    <div class="item">display: flex;</div>
+    <div class="item">right side</div>
+  </div>
+  <div class="container2 container" >
+    <div class="item">left side</div>
+    <div class="item">display: flex;</div>
+    <div class="item">right side</div>
+  </div>
+  <h3 id="2"># flex-basis: auto vs flex-basis: 0</h3>
+  <div class="container3 container" style="display: inline-flex;">
+    <div class="item">left side</div>
+    <div class="item">flex: 1 1 auto;最小宽度：内容宽 <br>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. </div>
+    <div class="item">right side</div>
+  </div>
+  <div class="container4 container" style="display: inline-flex;">
+    <div class="item">left side</div>
+    <div class="item">flex: 1;最小宽度：0<br>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. </div>
+    <div class="item">right side</div>
+  </div>
+  <h3 id="3"># flex-grow的计算： item width + (container content width - sum(item width)) * (flex-grow / sum(flex-grow))</h3>
+  <div class="comment">
+    <ul>
+      <li>border和padding不参与grow</li>
+      <li>该计算会受到max-width的影响，如果通过grow后得到的width比max-width小，那么选择max-width为该项的最后width值，然后对其他的项重新进行grow的计算</li>
+      <li>sum(flex-grow)不足1的时候按照1计算</li>
+    </ul>
+  </div>
+  <div class="container5 container" style="display: flex;">
+    <!-- 50 + (1200 - (70 + 220 + 70))/6 * 1 -->
+    <div class="item item1">flex: 1 1 50px; <br>grow后的内容宽度是：190px</div>
+    <!-- 200+ (1200 - (70 + 220 + 70))/6 * 2 -->
+    <div class="item item2" style="">flex: 2 1 200px;<br>grow后的内容宽度是：480</div>
+    <!-- 50 + (1200 - (70 + 220 + 70))/6 * 3 =  -->
+    <div class="item item3">flex: 3 1 50px;<br>grow后的内容宽度是：470</div>
+  </div>
+  <div class="container5 container" style="display: flex;">
+    <!-- 50 + (1200 - (70 + 420 + 70 ))/4 * 1 -->
+    <div class="item item1">flex: 1 1 50px; <br>grow后的内容宽度是：210px</div>
+    <div class="item item2" style="max-width: 400px;">flex: 2 1 200px;<br>grow后的内容宽度是：400</div>
+    <!-- 50 + (1200 - (70 + 420 + 70))/4 * 3 =  -->
+    <div class="item item3">flex: 3 1 50px;<br>grow后的内容宽度是：530</div>
+  </div>
+  <h3># flex-shrink的计算： item width + (container content width - sum(item width)) * (flex-shrink*item content width / sum(flex-shrink * item content width))</h3>
+  <div class="comment">
+    <ul>
+      <li>border和padding不参与shrink,计算权重的时候用内容宽，计算不足空间的时候用的是边界宽度</li>
+      <li>会受到内容的影响，具体影响不清楚，在item上加上min-width:0可以消除这种影响,下面第一个示例是加了min-width:0的，加了后的结果同计算公式一。第二个没有</li>
+      <li>该计算会受到min-width的影响，如果通过shrink后得到的width比min-width小，那么选择min-width为该项的最后width值，然后对其他的项重新进行shrink的计算，见下面第三个示例</li>
+      <li>如果flex-shrink为小数的时候，不足空间的计算需要乘以一个百分比，具体可以看<a href="https://zhuanlan.zhihu.com/p/24372279?from=timeline&isappinstalled=0">谢老师的博文【详解 flex-grow 与 flex-shrink】</a></li>
+    </ul>
+  </div>
+
+  <div class="container6 container" style="display: flex;">
+  <!-- 300 - 660 * (1*300) / (1*300 + 2*600 + 3*300) -->
+    <div class="item item1">flex: 0 1 300px;<br>shrink后的宽度是：217.5px</div>
+  <!-- 600 - 660 * (2*600) / (1*300 + 2*600 + 3*300) -->
+    <div class="item item2" style="">flex: 0 2 600px;<br>shrink后的宽度是：270px</div>
+  <!-- 300 - 660 * (3*300) / (1*300 + 2*600 + 3*300) -->
+    <div class="item item3">flex: 0 3 300px;flex: 0 3 300px;<br>shrink后的宽度是：52.5px</div>
+  </div>
+
+  <div class="container7 container" style="display: flex;">
+    <div class="item item1">flex: 0 1 300px;<br>shrink后的宽度是：211.92px</div>
+    <div class="item item2" style="">flex: 0 2 600px;<br>shrink后的宽度是：267.72px</div>
+    <div class="item item3" style="">flex: 0 3 300px;flex: 0 3 300px;<br>shrink后的宽度是：100.36px</div>
+  </div>
+
+  <div class="container7 container" style="display: flex;">
+    <div class="item item1">flex: 0 1 300px;<br>shrink后的宽度是：204px</div>
+    <div class="item item2" style="">flex: 0 2 600px;<br>shrink后的宽度是：216px</div>
+    <!-- 300 - (320+620+140-600) * (1*300) / (1*300 + 2*600) -->
+    <div class="item item3" style="min-width: 120px;">flex: 0 3 300px;<br>min-width:120px;<br>shrink后的宽度是：120px</div>
+  </div>
+
+  <h3># flex-basis vs width</h3>
+  <div class="comment">
+    <ul>
+      <li>basis为非0和auto的情况下，basic的值会覆盖width的值，为item的宽度(下1)</li>
+      <li>basis为auto的情况下且存在width的情况下item的宽度为width的值(下2)</li>
+      <li>basis为0的情况下且存在width的情况下item的最大宽度为width值，宽度由内容区域决定决定(下3)</li>
+    </ul>
+  </div>
+  <div class="container" style="display: flex;height: 150px;">
+    <div class="item" style="width: 100px;">width: 100px;<br>flex: 0 1 auto;</div>
+    <div class="item" style="width: 100px;flex-basis: 200px;">width: 100px;<br>flex: 0 1 200px;</div>
+    <div class="item" style="width: 100px; flex: 0 1 auto;">width: 100px;<br>flex: 0 1 auto;</div>
+  </div>
+  <div class="container" style="display: flex;height: 150px;">
+    <div class="item" style="width: 100px; flex: 0 1 auto;">width: 100px; flex: 0 1 auto;</div>
+    <div class="item" style="width: 150px; flex: 0 1 auto;">width: 150px; flex: 0 1 auto;</div>
+    <div class="item" style="width: 300px; flex: 0 1 auto;">width: 300px; flex: 0 1 auto;</div>
+  </div>
+  <div class="container" style="display: flex;height: 150px;">
+    <div class="item" style="width: 100px; flex: 0 1 0;">width: 100px; flex: 0 1 0;</div>
+    <div class="item" style="width: 100px; flex: 0 1 0;"></div>
+    <div class="item" style="width: 100px; flex: 0 1 0;"></div>
+  </div>
+</body>
+</html>

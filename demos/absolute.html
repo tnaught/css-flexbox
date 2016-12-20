@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>flex item和绝对定位</title>
+  <style type="text/css">
+    .container{margin-left: auto;margin-right: auto;display: flex; flex-flow: row wrap; height: 480px; border: 2px solid rgba(148, 134, 134, 0.28);width: 800px;padding: 30px;}
+    .item {height: 100px;border: 2px solid #e4e4e4;flex: 1 1 auto;}
+    .item1 {width: 200px;background: #d09;}
+    .item2 {width: 400px;background: #09d;}
+
+    .item2 {
+      align-self: center;
+      position: absolute;
+      height: 50px;
+      /*top: 0;*/
+      /*left: 0;*/
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="item item1"></div>
+    <div class="item item2"></div>
+    <div class="item item1"></div>
+    <div class="item item1"></div>
+    <div class="item item1"></div>
+    <div class="item item1"></div>
+    <div class="item item1"></div>
+    <div class="item item1"></div>
+  </div>
+</body>
+</html>
