@@ -1,11 +1,11 @@
 ## 基本概念
-1. 任何元素都可以使用flex布局，display:flex或display: inline-flex; ([DEMO](http://localhost:5000/flex.html#1))
+1. 任何元素都可以使用flex布局，display:flex或display: inline-flex; ([DEMO](https://tnaught.github.io/css-flexbox/demos/flex.html#1))
 
 2. 设为flex布局的元素为flex container,flex container的子元素为flex item 
 
 3. 主轴：main axis,main start,main end,main size  
 
-4. 交叉轴：cross axis,cross start,cross end,cross size ([DEMO](http://localhost:5000/flex-flow.html))  
+4. 交叉轴：cross axis,cross start,cross end,cross size ([DEMO](https://tnaught.github.io/css-flexbox/demos/flex-flow.html))  
 
 5. 设为flex布局以后，flex item的float、clear和vertical-align失效
 
@@ -35,7 +35,7 @@ flex container的属性:
 	
 	+ flex-direction：row | column | row-reverse | column-reverse(受writing-mode相关)
 	+ flex-wrap: nowrap | wrap | wrap-reverse
-	+ flex-flow: flex-direction flex-wrap([DEMO](http://localhost:5000/flex-flow.html))
+	+ flex-flow: flex-direction flex-wrap([DEMO](https://tnaught.github.io/css-flexbox/demos/flex-flow.html))
 	+ justify-content: flex-start(default) | flex-end | center | space-between | space-around
 	+ align-items: flex-start | flex-end | center | baseline | stretch((default, 没有height的情况下才能stretch，stretch不会超过max-height值，不会小于min-height的值)
 	+ align-content: flex-start | flex-end | center | space-between | space-around | stretch(default)
@@ -45,25 +45,25 @@ flex item的属性：
 	+ flex-grow：0
 	+ flex-shrink: 1
 	+ flex-basis: auto
-	+ flex: flex-grow（缺省值1,和默认值不同) flex-shrink(缺省值1) flex-basis(缺省值：0,和默认值不同)[0和auto的区别](http://localhost:5000/flex.html#2)
-	+ order[DEMO](http://localhost:5000/order.html)
+	+ flex: flex-grow（缺省值1,和默认值不同) flex-shrink(缺省值1) flex-basis(缺省值：0,和默认值不同)[0和auto的区别](https://tnaught.github.io/css-flexbox/demos/flex.html#2)
+	+ order[DEMO](https://tnaught.github.io/css-flexbox/demos/order.html)
 	+ align-self:flex-start | flex-end | center | baseline | stretch
 
 ## 和其他属性的关系
 
 1. 绝对定位元素 
-	> * absolute元素的flex值不生效([DEMO](http://localhost:5000/absolute.html))   	 
+	> * absolute元素的flex值不生效([DEMO](https://tnaught.github.io/css-flexbox/demos/absolute.html))   	 
 	> * 计算absolute元素默认定位的时候可以把absolute当作一个孤立的flex item来看待，也就是说用来对齐的属性(`align-items`、`justify-content`、`align-self`)是生效的  
 	> * 在有left和top的情况下absolute元素的定位规则保持不变
 	   
 2. margin 
 	> * margin不会发生合并，flex container和flex item的margin不合并，flex item之间的margin也不合并  
-	> * margin auto可以实现居中对齐([DEMO](http://localhost:5000/margin.html))   
+	> * margin auto可以实现居中对齐([DEMO](https://tnaught.github.io/css-flexbox/demos/margin.html))   
 	> * 百分值的margin会有浏览器差异性，不建议使用
 	
  
 ## flex-grow和flex shrink的计算
-[详情见DEMO](http://localhost:5000/flex.html)
+[详情见DEMO](https://tnaught.github.io/css-flexbox/demos/flex.html)
 
 ## width、flex-basis、min-width、max-width、'content-width'的关系
 
